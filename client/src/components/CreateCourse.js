@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Form from './Form';
 
 
-// This component provides the "Create Course" screen by rendering a form that allows a user to create a new course
+// This component provides the "Create Course" screen by rendering a form that allows a user to create a course
 class CreateCourse extends Component {
   state = {
     title: '',
