@@ -4,6 +4,7 @@ const router = express.Router();
 const { asyncHandler } = require('../middleware/asyncHandler.js');
 const { authenticateUser } = require('../middleware/auth-user.js');
 const {User} = require('../models');
+const bcrypt = require('bcryptjs');
 
 
 // Returns properties and values for current authenticated user
@@ -21,7 +22,10 @@ router.get('/users',  authenticateUser, asyncHandler(async (req, res) => {
 // Creates a new user.
 router.post('/users', asyncHandler(async (req, res) => {
     try {
-      await User.create(req.body);
+      const newUser = await User.create(req.body);
+    //code reference: rest-api_final/routes
+    newUser.password = bcrypt.hashSync(newUser.password, 10);
+    await newUser.save();
       res.status(201).location('/').end();
     } catch (error) {
       if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
