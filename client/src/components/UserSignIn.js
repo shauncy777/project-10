@@ -28,7 +28,7 @@ class UserSignIn extends Component {
           submitButtonText="Sign In"
           elements={() => (
             <React.Fragment>
-            <label> Email Address
+            <label htmlFor="emailAddress"> Email Address</label>
               <input 
                 id="emailAddress" 
                 name="emailAddress" 
@@ -36,8 +36,7 @@ class UserSignIn extends Component {
                 value={emailAddress} 
                 onChange={this.change} 
                 placeholder="Email" />
-                </label>
-              <label> Password 
+              <label htmlFor="password"> Password</label>   
               <input 
                 id="password" 
                 name="password"
@@ -45,7 +44,6 @@ class UserSignIn extends Component {
                 value={password} 
                 onChange={this.change} 
                 placeholder="Password" />    
-                </label>            
             </React.Fragment>
           )} />
         <p>

@@ -13,6 +13,7 @@ import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import DeleteCourse from "./components/DeleteCourse";
+import UnhandledError from './components/UnhandledError';
 
 // Subscribes components to context 
 const UserSignUpWithContext = withContext(UserSignUp); 
@@ -37,6 +38,7 @@ const routes = () => (
         <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
         <PrivateRoute path="/courses/:id/delete" component={DeleteCourseWithContext} />
+        <Route path='/error' component={UnhandledError}/>
       </Switch>
   </Router>
 );

@@ -4,21 +4,22 @@ import Form from './Form';
 
 //Component creates a sign up page for users that are not authenticated
 class UserSignUp extends Component {
-    state = {
+  constructor() {
+    super();
+    this.state = {
         firstName: '',
-        lastName:'',
+        lastName: '',
         emailAddress: '',
         password: '',
-        confirmedPassword: '',
-        errors: []
-      }
+        errors: [],
+    };
+}
       render() {
           const {
               firstName,
               lastName,
               emailAddress,
               password,
-              confirmedPassword,
               errors
           }= this.state;
 
@@ -33,6 +34,7 @@ class UserSignUp extends Component {
             submitButtonText="Sign Up"
             elements={() => (
               <React.Fragment>
+                <label htmlFor="firstName">First Name</label>
                 <input 
                   id="firstName" 
                   name="firstName" 
@@ -40,6 +42,7 @@ class UserSignUp extends Component {
                   value={firstName} 
                   onChange={this.change} 
                   placeholder="First Name" />
+                <label htmlFor="lastName">Last Name</label>
                 <input 
                   id="lastName" 
                   name="lastName" 
@@ -47,6 +50,7 @@ class UserSignUp extends Component {
                   value={lastName} 
                   onChange={this.change} 
                   placeholder="Last Name" />
+                <label htmlFor="emailAddress">Email Address</label>  
                 <input 
                   id="emailAddress" 
                   name="emailAddress" 
@@ -54,20 +58,14 @@ class UserSignUp extends Component {
                   value={emailAddress} 
                   onChange={this.change} 
                   placeholder="Email" />
+                <label htmlFor="password">Password</label>  
                 <input 
                   id="password" 
                   name="password"
                   type="password"
                   value={password} 
                   onChange={this.change} 
-                  placeholder="Password" />
-                <input 
-                  id="confirmedPassword" 
-                  name="confirmedPassword"
-                  type="password"
-                  value={confirmedPassword} 
-                  onChange={this.change} 
-                  placeholder="Confirm Password" />
+                  placeholder="Password" />  
               </React.Fragment>
             )} />
           <p>
@@ -95,7 +93,6 @@ class UserSignUp extends Component {
               lastName,
               emailAddress,
               password,
-              confirmedPassword
           } = this.state;
 
           // Creates user
@@ -103,8 +100,7 @@ class UserSignUp extends Component {
               firstName,
               lastName,
               emailAddress,
-              password,
-              confirmedPassword
+              password
           }
           
           // Catches and displays errors
@@ -117,12 +113,12 @@ class UserSignUp extends Component {
                   context.actions.signIn(emailAddress, password)
                   .then(() => {
                       this.props.history.push('/');
-                      console.log(`${emailAddress} was succesfully signed up a new user!`);
+                      console.log(`${emailAddress} was succesfully signed up as a new user!`);
                   })
                   .catch(error => {
-                      this.props.history.push('/error')
+                      this.props.history.push('/error');
                       console.log(error);
-                  })
+                  });
               }
           })
 
