@@ -23,9 +23,8 @@ router.get('/users',  authenticateUser, asyncHandler(async (req, res) => {
 router.post('/users', asyncHandler(async (req, res) => {
     try {
       const newUser = await User.create(req.body);
-    //code reference: rest-api_final/routes
-    newUser.password = bcrypt.hashSync(newUser.password, 10);
-    await newUser.save();
+      newUser.password = bcrypt.hashSync(newUser.password, 10);
+      await newUser.save();
       res.status(201).location('/').end();
     } catch (error) {
       if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
